@@ -10,36 +10,30 @@ import UIKit
 
 class RSSPostVC: UIViewController {
 
-    var detailItem: AnyObject? {
+    var detailItem: RSSItem? {
         didSet {
             // Update the view.
-            self.configureView()
+           // self.configureView()
         }
     }
+    @IBOutlet weak var linkURL: UILabel!;
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.configureView()
 
         // Do any additional setup after loading the view.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     func configureView() {
-        NSLog("heeey it loaded")
-        self.getDetails()
+        self.layoutDetails()
     }
 
-    func getDetails() {
-        Data.shared().getDetails(self.detailItem, success: { (<#NSArray!#>) -> Void in
-            println("success")
-        }) { (Error!) -> Void in
-            println("")
-        }
-
+    func layoutDetails() {
+       self.title =  self.detailItem?.title
+        println("\(self.linkURL) detail item \(self.detailItem)")
+        self.linkURL.text = self.detailItem?.link
     }
     
 
