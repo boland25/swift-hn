@@ -64,39 +64,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PwW-by-8Vb">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PwW-by-8Vb">
                                 <rect key="frame" x="0.0" y="64" width="600" height="100"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="549" translatesAutoresizingMaskIntoConstraints="NO" id="Lff-48-YW5">
-                                        <rect key="frame" x="31" y="27" width="549" height="47"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="549" id="IkG-lZ-JMW"/>
-                                            <constraint firstAttribute="height" constant="47" id="jP5-NU-rh9"/>
-                                        </constraints>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="549" translatesAutoresizingMaskIntoConstraints="NO" id="Lff-48-YW5">
+                                        <rect key="frame" x="31" y="26" width="549" height="47"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="Lff-48-YW5" firstAttribute="top" secondItem="PwW-by-8Vb" secondAttribute="top" constant="27" id="6z2-G0-o8v"/>
-                                    <constraint firstAttribute="trailing" secondItem="Lff-48-YW5" secondAttribute="trailing" constant="20" id="DXQ-eB-ENp"/>
-                                    <constraint firstItem="Lff-48-YW5" firstAttribute="top" secondItem="PwW-by-8Vb" secondAttribute="top" constant="27" id="FgG-MB-SUj"/>
-                                    <constraint firstItem="Lff-48-YW5" firstAttribute="top" secondItem="PwW-by-8Vb" secondAttribute="top" constant="27" id="RsB-Ia-GvE"/>
-                                    <constraint firstItem="Lff-48-YW5" firstAttribute="leading" secondItem="PwW-by-8Vb" secondAttribute="leading" constant="31" id="VSs-j5-Opc"/>
-                                    <constraint firstItem="Lff-48-YW5" firstAttribute="leading" secondItem="PwW-by-8Vb" secondAttribute="leading" constant="31" id="drS-mG-bJq"/>
-                                    <constraint firstAttribute="bottom" secondItem="Lff-48-YW5" secondAttribute="bottom" constant="26" id="mBi-2N-DZ2"/>
-                                    <constraint firstItem="Lff-48-YW5" firstAttribute="leading" secondItem="PwW-by-8Vb" secondAttribute="leading" constant="31" id="tmS-hn-gbm"/>
-                                    <constraint firstItem="Lff-48-YW5" firstAttribute="centerY" secondItem="PwW-by-8Vb" secondAttribute="centerY" id="wv8-9I-S7G"/>
-                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="PwW-by-8Vb" firstAttribute="leading" secondItem="57Y-Iu-kSB" secondAttribute="leading" id="5uC-ok-NsO"/>
-                            <constraint firstItem="PwW-by-8Vb" firstAttribute="top" secondItem="57Y-Iu-kSB" secondAttribute="bottom" id="POX-DG-vFG"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="linkURL" destination="Lff-48-YW5" id="lSi-fD-9aE"/>
