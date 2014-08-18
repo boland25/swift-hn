@@ -10,20 +10,19 @@ import UIKit
 
 class RSSPostVC: UIViewController {
 
-    var detailItem: RSSItem? {
+    var detailItem: RSSItem = RSSItem() {
         didSet {
-            // Update the view.
-           // self.configureView()
+            // TODO: add anything in here that would need to happen when data is set.  NOTE: can't load anything view related because the view does not yet exist, ask me how i realized that one?
         }
     }
     @IBOutlet weak var linkURL: UILabel!;
+    @IBOutlet weak var commentView: UIWebView!;
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureView()
 
-        // Do any additional setup after loading the view.
     }
     
     func configureView() {
@@ -31,9 +30,18 @@ class RSSPostVC: UIViewController {
     }
 
     func layoutDetails() {
-       self.title =  self.detailItem?.title
+       self.title =  self.detailItem.title
         println("\(self.linkURL) detail item \(self.detailItem)")
-        self.linkURL.text = self.detailItem?.link
+        self.linkURL.text = self.detailItem.link
+        self.setCommentsWithLink(self.detailItem.comments!)
+    }
+    
+    func setCommentsWithLink(linkURL:String)->Void {
+        Data.shared().getComments(linkURL, success: { (htmlString) -> Void in
+            //HTML turned into string
+            }, failure: {(error:Error )->Void in
+                
+        })
     }
     
 

@@ -22,7 +22,6 @@ class Networking: NSObject {
     func apiRequest(path:String!, params:NSDictionary?, method:String!, success: ((AnyObject!) -> Void)!, failure: ((Error!) -> Void)!)
     {
         self.manager.requestSerializer = AFJSONRequestSerializer()
-        //self.manager.responseSerializer = AFJSONResponseSerializer()
         self.manager.responseSerializer = AFXMLParserResponseSerializer()
         var rssSet = NSMutableSet()
         rssSet.addObject("application/rss+xml")
@@ -38,9 +37,18 @@ class Networking: NSObject {
                 if failure {
                     println("Response(failure): \(responseObject)")
                     
-                    let errorDict: NSDictionary! = responseObject!["error"] as NSDictionary
-                    println("errorDict: \(errorDict)")
-                    var aError : Error? = Error.modelWithDictionary(errorDict, error: nil)
+                    //NOTE: if there is no internet connection there will be nothing here, so need to fix this as its expecitng a dict to be there
+                    var aError:Error?;
+                    if (responseObject) {
+                        let errorDict: NSDictionary! = responseObject!["error"] as NSDictionary
+                        println("errorDict: \(errorDict)")
+                        aError = Error.modelWithDictionary(errorDict, error: nil)
+                    } else {
+                        var emptyDict = NSDictionary();
+                         aError = Error.modelWithDictionary(emptyDict, error: nil)
+                    }
+                    
+                    
                     failure(aError)
                 }
             }
@@ -55,5 +63,19 @@ class Networking: NSObject {
             
         }).resume()
     }
+    
+    func apiAbsolutePathRequest(fullPath:String, params:NSDictionary?, method:String,  success: ((response:AnyObject) -> Void), failure: ((error:Error) -> Void)) {
+        var manager:AFHTTPRequestOperationManager = AFHTTPRequestOperationManager()
+        manager.responseSerializer = AFHTTPResponseSerializer();
+        manager.GET(fullPath, parameters:params, success: { (operation:AFHTTPRequestOperation!, responseObject:AnyObject!) -> Void in
+            println("getting comments back as html string here")
+            if (success != nil) {
+                success (response: responseObject)
+            }
+            }, failure: { (operation :AFHTTPRequestOperation!, error:NSError! )->Void in
+                
+        })
+    }
+    
 
 }

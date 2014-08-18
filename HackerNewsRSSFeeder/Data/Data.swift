@@ -56,6 +56,18 @@ class Data: NSObject {
         })
     }
     
+    func getComments(commentPath:String, success:((htmlString:String)->Void), failure:((error:Error)->Void)) {
+        Networking.shared().apiAbsolutePathRequest(commentPath,
+                params: nil,
+                method: GET,
+                success: { (response:AnyObject) -> Void in
+                    if (success != nil) {
+                        var htmlString = NSString(data:response as NSData, encoding:NSUTF8StringEncoding)
+                        success(htmlString: htmlString)
+                    }
+                }, failure:failure)
+    }
+    
     func getXmlParser()->HNXMLParserDelegate {
         if (!self.xmlParserDelegate) {
             self.xmlParserDelegate = HNXMLParserDelegate()
