@@ -39,21 +39,35 @@ class RSSPostVC: UIViewController {
     func setCommentsWithLink(linkURL:String)->Void {
         Data.shared().getComments(linkURL, success: { (htmlString) -> Void in
             //HTML turned into string
+            self.loadHTML(htmlString)
             }, failure: {(error:Error )->Void in
-                
+                self.showError(error)
         })
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func loadHTML(htmlString:String)->Void {
+        self.commentView.loadHTMLString(htmlString, baseURL: nil);
     }
-    */
+    
+    func resizeHTMLViewToFit()->Void {
+        var contentSize = self.commentView.scrollView.contentSize;
+        var viewSize = self.view.bounds.size;
+        
+        var rw = viewSize.width / viewSize.height
+        
+        self.commentView.scrollView.minimumZoomScale = rw
+        self.commentView.scrollView.maximumZoomScale = rw*4
+        self.commentView.scrollView.zoomScale = rw;
+    }
+    
+ // MARK: - UIWebViewDelegate
+    func webViewDidFinishLoad(webView:UIWebView)->Void {
+        //TODO: css style could be applied here in a future release
+        
+        //NOTE: wasn't sure how to deal with the comments section as it doesn't fit without re-sizing it, this is a temp solution
+        self.resizeHTMLViewToFit();
+      //  self.hideActivityIndicator();
+    }
 
  // MARK: - Error Handling
     

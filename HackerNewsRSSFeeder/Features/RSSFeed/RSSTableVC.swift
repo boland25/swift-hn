@@ -22,7 +22,7 @@ class RSSTableVC: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         self.title = "Hacker News Feed";
-        self.tableView.estimatedRowHeight = 70.0;
+     //   self.tableView.estimatedRowHeight = 44.0;
         getFeeds()
     }
 
